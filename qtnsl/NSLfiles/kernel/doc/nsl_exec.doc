@@ -1,0 +1,15 @@
+//	exec
+ 
+exec ['type'] ['attr'] 
+	 
+- execute a particular module (by name) 
+
+    type    	   attr  	    description
+------------	----------	-------------------
+[module]    			execute current module 
+	  	  'name'  	execute a particular module by name 
+	  	  'index'  	execute a particular module by index 
+		 
+- 'name' is either a string name ('*' is the wildcard)
+- 'index' is an integer 
+

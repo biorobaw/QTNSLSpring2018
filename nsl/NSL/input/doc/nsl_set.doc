@@ -1,0 +1,44 @@
+//	input: set
+
+set 'type' [' attr'] ['value']
+	 
+    type    	  attr  	   value         description
+------------	----------	-----------    ---------------
+input_layer					input layer name
+		  xz		'int'		zero coordinate x layer element
+						default is 0
+		  yz		'int'		zero coordinate y layer element,
+						default is 0
+		  dx		'value'		distance between adjacent 
+						x layer elements,
+						default is 1.0
+		  dy		'value'		distance between adjacent 
+						y layer elements,
+						default is 1.0
+		  overlap	'on-off'	overlap stim values 
+stim						current stim
+		 		'index'		stim by index index
+		  dx		'value'		stim x size (width), 
+						default is 1.0
+		  dy		'value'		stim y size (height), 
+						default is 1.0
+		  xc		'value'		stim x center initial location,
+						default is 0.0
+		  yc		'value'		stim y center initial location
+						default is 0.0
+		  x0		'value'		stim x left initial location,
+						default is 0.0
+		  y0		'value'		stim y top initial location
+						default is 0.0
+		  spec		'type'		CENTER or CORNER
+		  type		'type'		BLOCK or ICON
+		  val		'value'		stim value (BLOCK), 
+						default is 1.0
+		  icon		'layer'		stim icon matrix (ICON)
+		  vx		'value'		stim x velocity, 
+						positive going right
+		  vy		'value'		stim y velocity, 
+						positive going up
+time_interval
+		  t0		'value'		beginning of stim time interval
+		  t1		'value'		end of stim time interval

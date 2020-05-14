@@ -1,0 +1,105 @@
+# SCCS  %W%---%E%--%U% 
+#
+# NSL: make_xkernel_xlib
+# 
+
+# CC
+
+CC_DIR = .
+CC_INCL = -I$(CC_DIR)/incl
+
+# SYSTEM
+
+SYS_DIR = .
+
+# NSL
+
+NSL_DIR = $(SYS_DIR)/NSL
+NSL_KERNEL_DIR = $(NSL_DIR)/kernel
+NSL_KERNEL_INCL_DIR = $(NSL_KERNEL_DIR)/incl
+NSL_KERNEL_INCL = -I$(NSL_KERNEL_INCL_DIR)
+ 
+# X
+
+XNSL_DIR = $(SYS_DIR)/XNSL
+XNSL_KERNEL_DIR = $(XNSL_DIR)/xkernel
+XNSL_KERNEL_INCL_DIR = $(XNSL_KERNEL_DIR)/incl
+XNSL_KERNEL_SRC_DIR = $(XNSL_KERNEL_DIR)/src
+
+XNSL_KERNEL_INCL = -I$(XNSL_KERNEL_INCL_DIR)
+XNSL_KERNEL_LIB_DIR = $(XNSL_KERNEL_DIR)/lib/$(ARCH)/$(DEBUG_FG)
+XNSL_KERNEL_OBJ_DIR = $(XNSL_KERNEL_DIR)/obj/$(ARCH)/$(DEBUG_FG)
+
+XNSL_KERNEL_XLIB_SRC_DIR = $(XNSL_KERNEL_SRC_DIR)/xlib_xlib_src
+XNSL_KERNEL_XLIB_INCL_DIR = $(XNSL_KERNEL_INCL_DIR)/xlib_xlib_incl
+XNSL_KERNEL_XLIB_INCL = -I$(XNSL_KERNEL_XLIB_INCL_DIR)
+
+# xview dir
+
+X_INCL_DIR = 
+X_INCL = -I$(X_INCL_DIR)
+
+# compilation specs
+
+CC = CC
+AR = ar
+cc = cc
+CC_FLAGS = -c
+LD_FLAGS =
+TEMPLATE_FLAGS =
+
+# window headers
+
+XNSL_HEADERS =	$(NSL_KERNEL_INCL_DIR)/nsl_all_kernel_include.h 	\
+		$(XNSL_KERNEL_INCL_DIR)/xkernel.h 	\
+		$(XNSL_KERNEL_XLIB_INCL_DIR)/xnsl_xlib_include.h
+
+XNSL_KERNEL_HEADERS = $(XNSL_KERNEL_XLIB_INCL_DIR)/xnsl_xlib_widget.h
+   
+# window object files	$(XNSL_KERNEL_XLIB_SRC_DIR)
+
+#XNSL_KERNEL_SRC = xnsl_xlib_widget.C		\
+#		xnsl_xlib_graph.C		\
+# 		xnsl_xlib_main.C
+
+
+XNSL_KERNEL_OBJ = $(XNSL_KERNEL_OBJ_DIR)/xnsl_xlib_widget.o
+
+# nsl make object files
+
+#XNSL_KERNEL_OBJ =        $(XNSL_KERNEL_SRC:.C=.o)
+
+$(XNSL_KERNEL_OBJ_DIR)/xnsl_kernel_xlib.o :	$(XNSL_KERNEL_OBJ)
+	$(LD) $(LD_FLAGS) -r $(XNSL_KERNEL_OBJ) -o $@
+	mv -f $@ $(XNSL_KERNEL_LIB_DIR)/XNSLxlib.o
+#	cp -p $@ $(XNSL_KERNEL_LIB_DIR)/XNSLxlib.o
+
+.SUFFIXES: .C .o
+
+
+$(XNSL_KERNEL_OBJ_DIR)/%.o:   $(XNSL_HEADERS) $(XNSL_KERNEL_HEADERS) %.C
+	$(CC) $(CC_FLAGS) $(TEMPLATE_FLAGS) $(XNSL_KERNEL_INCL)  $(XNSL_KERNEL_XLIB_INCL) $(NSL_INCL) $(X_INCL) $(CC_INCL) -o $(XNSL_KERNEL_OBJ_DIR)/${@F} ${*F}.C
+
+
+#.C.o :	$(XNSL_HEADERS) $(XNSL_KERNEL_HEADERS)
+#	$(CC) $(CC_FLAGS) $(XNSL_KERNEL_INCL) $(XNSL_KERNEL_XLIB_INCL) $(NSL_INCL) $(X_INCL) $(CC_INCL) $< -o $@
+
+# clean
+
+clean:	
+	rm -f xnsl_kernel_xlib.o
+	rm -f $(XNSL_KERNEL_XLIB_SRC_DIR)/*.o
+	rm -f $(XNSL_KERNEL_XLIB_SRC_DIR)/*[%~]
+
+# saber
+
+SABER_FLAGS =
+
+saber_src :	$(XNSL_HEADERS) $(XNSL_KERNEL_HEADERS)
+	# load $(SABER_FLAGS) $(XNSL_KERNEL_INCL) $(NSL_INCL) $(X_INCL) $(XNSL_KERNEL_SRC)
+
+saber_obj :	$(XNSL_HEADERS) $(XNSL_KERNEL_HEADERS)
+	# load $(XNSL_KERNEL_MAIN_SRC_DIR)/xnsl_kernel_main.o
+
+.SCCS_GET:
+	?sccs $(SCCSFLAGS) get $(SCCSGETFLAGS) $@ -G$@

@@ -1,0 +1,14 @@
+//	input: enable
+
+enable 'type' [' attr'] 
+	 
+- enable processing for object type 
+	 
+    type       	   attr       	    description 
+------------ 	---------- 	------------------- 
+input_layer   			enable current input layer 
+	  	  'name'  	enable an input layer by name 
+	  	  'index'  	enable an input layer by index 
+stim  	 			enable current input stim 
+	  	  'name'  	enable an input stim by name 
+	  	  'index'  	enable an input stim by index 

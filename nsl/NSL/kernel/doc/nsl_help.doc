@@ -1,0 +1,32 @@
+//	help 
+
+help ['type']
+	
+   type  	    description
+------------	--------------------
+assign		assign values to layer
+cd 		change directory (used for looking up models)
+close  		close a file 
+cont 		continue processing modules starting at current time 
+create		create objects
+csh,! 		execute a c-shell command 
+disable  	disable objects 
+enable  	enable objects 
+exec  		execute a particular module 
+exit,quit 	exit NSL 
+file_disable  	disable layer for file in/out 
+file_enable  	enable layer for file in/out 
+help  		this command 
+init 		process modules for t=0 
+load,read 	read a file 
+open 		open a file 
+reset		reset variables
+run 		process modules for t>=0 
+set  		set variables 
+sh 		execute a shell command 
+status  	print status inforamtion on the model 
+step  		process once through all modules 
+stop		stop processing or file i/o
+update		update objects
+write 		write a file 
+

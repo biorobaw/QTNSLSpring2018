@@ -1,0 +1,21 @@
+//	enable
+
+enable ['type'] [' attr'] 
+	 
+- enable processing for object type 
+	 
+    type       	   attr       	    description 
+------------ 	---------- 	------------------- 
+model    			enable current model 
+	  	  'name'  	enable a particular model by name 
+	  	  'index'  	enable a particular model by index 
+[module]    			enable current module 
+	  	  'name'  	enable a particular module by name 
+	  	  'index'  	enable a particular module by index 
+layer    			enable current layer 
+	  	  'name'  	enable a particular layer by name 
+	  	  'index'  	enable a particular layer by index 
+ 	 
+- 'name' is either a string name ('*' is the wildcard)
+- 'index' is an integer 
+

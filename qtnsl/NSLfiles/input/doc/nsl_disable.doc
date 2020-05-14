@@ -1,0 +1,16 @@
+//	input: disable
+
+disable 'type' [' attr'] 
+	 
+- disable processing for object type 
+	 
+    type       	   attr       	    description 
+------------ 	---------- 	-------------------  
+input_layer   			disable current input layer 
+	  	  'name'  	disable an input layer by name 
+	  	  'index'  	disable an input layer by index 
+stim  	 			disable current input stim 
+	  	  'name'  	disable an input stim by name 
+	  	  'index'  	disable an input stim by index 
+
+ 

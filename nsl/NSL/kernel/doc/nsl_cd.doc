@@ -1,0 +1,11 @@
+// 	cd
+
+cd ['dir']
+
+- change directory (used for looking up models)
+
+  dir  		   description
+-------		----------------
+'dir'		desired directory
+		(if no directory is specified, user root directory is used.)
+

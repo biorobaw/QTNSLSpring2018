@@ -1,0 +1,11 @@
+//	reset
+
+reset 'type' 'attr' 'value'
+	 
+- reset  objects 
+	 
+    type     	   attr   	   value          description 
+------------ 	----------   	-----------   -------------------  
+layer     	'name'		  'value'  	reset layer value by name
+		'index'		  'value'  	reset layer value by index 
+ 

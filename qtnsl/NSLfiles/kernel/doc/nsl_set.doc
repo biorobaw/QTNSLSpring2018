@@ -1,0 +1,40 @@
+//	set
+
+set 'type' 'attr' 'value'
+	 
+- set buffer objects 
+	 
+    type     	   attr   	   value          description 
+------------ 	----------   	-----------   -------------------  
+system		verbose  	  'on_off'  	fully verbose processing   
+ 		print_time	  'on_off'	verbose time processing
+		log 		  'on_off'	enable/disable log
+		output 		  'on_off'	enable/disable output
+
+model			     'name' or 'index'	set model obj 
+		name		  'name'  	model by name 
+		index		  'index'  	model by index 
+		end_time  	  'value'  	float value 
+		current_time  	  'value'  	float value 
+		delta    	  'value'  	float value 
+ 
+diff	 	delta    	  'value'  	float value 
+		integration 	  'name'  	"EULER" by default 
+ 
+module    		     'name' or 'index'	set module obj 
+		name		  'name'  	module by name 
+		index		  'index'  	module by index 
+  
+layer    		     'name' or 'index'	set layer obj 
+		name		  'name'  	layer by name 
+		index		  'index'  	layer by index 
+elem_i  	index		  'index'  	layer row element index 
+elem_j  	index		  'index'  	layer col element index 
+
+file		name   		 'name'		file name 
+		index   	 'index'	index suffix 
+		auto     	 'on_off' 	generate NSL file name
+		dname		 'name'		directory name
+		ftype		 'name'		"nsl_file", etc. 
+  		io_type   	 'file_type' 	"INPUT", "OUTPUT" 
+		dump_type	 'dump_type'   	"LP" 

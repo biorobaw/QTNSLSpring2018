@@ -1,0 +1,12 @@
+//	file_disable
+
+file_disable ['type'] ['attr']
+
+- disable obj from file i/o
+
+    type       	   attr       	    description 
+---------- 	---------- 	------------------- 
+[layer] 	  		disable current layer for file in/out
+		'name' 		disable layer 'name' for file in/out 
+		'index' 	disable layer 'index' for file in/out 
+

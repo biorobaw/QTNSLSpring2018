@@ -1,0 +1,11 @@
+//	close
+
+close ['type'] ['attr']
+
+- close currently open file
+
+   type  	    attr    	   description
+------------	------------	-------------------
+file				close current file
+		'name'		close file name
+

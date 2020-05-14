@@ -1,0 +1,125 @@
+# SCCS  @(#)make_cmd_main	1.3---95/10/06--15:53:06 
+#
+# NSL : make_cmd_main
+# 
+
+# CC
+
+CC_DIR = .
+CC_INCL = -I$(CC_DIR)/incl
+
+# SYSTEM
+
+SYS_DIR = .
+
+# NSL
+
+NSL_DIR = $(SYS_DIR)/NSL
+NSL_KERNEL_DIR = $(NSL_DIR)/kernel
+NSL_KERNEL_INCL_DIR = $(NSL_KERNEL_DIR)/incl
+NSL_KERNEL_INCL = -I$(NSL_KERNEL_INCL_DIR)
+NSL_KERNEL_SRC_DIR = $(NSL_KERNEL_DIR)/src
+
+NSL_KERNEL_LIB_DIR = $(NSL_KERNEL_DIR)/lib/$(ARCH)/$(DEBUG_FG)
+NSL_KERNEL_OBJ_DIR = $(NSL_KERNEL_DIR)/obj/$(ARCH)/$(DEBUG_FG)
+
+NSL_KERNEL_CMD_INCL_DIR = $(NSL_KERNEL_INCL_DIR)/cmd_main_incl
+NSL_KERNEL_CMD_SRC_DIR = $(NSL_KERNEL_SRC_DIR)/cmd_main_src
+
+
+# compilation specs
+
+CC = CC
+AR = ar
+cc = cc
+CC_FLAGS = -c
+LD_FLAGS =
+TEMPLATE_FLAGS =
+
+# nsl headers
+
+NSL_HEADERS =	$(NSL_KERNEL_INCL_DIR)/nsl_all_kernel_include.h		\
+		$(NSL_KERNEL_INCL_DIR)/nsl_kernel_include.h		\
+		$(NSL_KERNEL_INCL_DIR)/nsl_command_include.h		\
+		$(NSL_KERNEL_INCL_DIR)/nsl_library_include.h
+
+NSL_CMD_HEADERS =	$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_buf.h	\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_type.h		\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_macro.h		\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_layer.h		\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_data_layer.h		\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_int_data.h		\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_num_data.h		\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_str_data.h		\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_ptr_data.h		\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_vector_layer.h	\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_int_vector.h		\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_num_vector.h		\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_str_vector.h		\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_ptr_vector.h		\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_matrix_layer.h	\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_int_matrix.h		\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_num_matrix.h		\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_str_matrix.h		\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_ptr_matrix.h		\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_model.h		\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_module.h		\
+		$(NSL_KERNEL_CMD_INCL_DIR)/nsl_cmd_system.h
+
+# nsl cmd files $(NSL_KERNEL_CMD_SRC_DIR)
+
+NSL_CMD_OBJ =	$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_buf.o			\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_type.o			\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_macro.o			\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_layer.o			\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_data_layer.o		\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_int_data.o		\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_num_data.o		\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_str_data.o		\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_ptr_data.o		\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_vector_layer.o		\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_int_vector.o		\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_num_vector.o		\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_str_vector.o		\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_ptr_vector.o		\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_matrix_layer.o		\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_int_matrix.o		\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_num_matrix.o		\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_str_matrix.o		\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_ptr_matrix.o		\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_model.o			\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_module.o			\
+		$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_system.o
+
+#NSL_CMD_OBJ =	$(NSL_CMD_SRC:.C=.o)
+
+$(NSL_KERNEL_OBJ_DIR)/nsl_cmd_main.o :	$(NSL_CMD_OBJ) $(NSL_HEADERS) $(NSL_CMD_HEADERS)
+	$(LD) $(LD_FLAGS) -r $(NSL_CMD_OBJ) -o $@
+
+.SUFFIXES: .C .o
+
+$(NSL_KERNEL_OBJ_DIR)/%.o :     $(NSL_HEADERS) $(NSL_CMD_HEADERS) %.C
+	$(CC) $(CC_FLAGS) $(TEMPLATE_FLAGS) $(NSL_KERNEL_INCL) $(CC_INCL) -o $(NSL_KERNEL_OBJ_DIR)/${@F} ${*F}.C
+
+#.C.o :	$(NSL_HEADERS) $(NSL_CMD_HEADERS)
+#	$(CC) $(CC_FLAGS) $(NSL_KERNEL_INCL) $(CC_INCL) $< -o $@
+
+# clean
+
+clean:
+	rm -f nsl_cmd_main.o
+	rm -f $(NSL_KERNEL_CMD_OBJ_DIR)/*.o
+	rm -f $(NSL_KERNEL_CMD_SRC_DIR)/*[%~]
+
+# saber
+
+SABER_FLAGS =
+
+saber_src :	$(NSL_HEADERS) $(NSL_CMD_HEADERS)
+	# load $(SABER_FLAGS) $(NSL_KERNEL_INCL) $(NSL_CMD_SRC)
+
+saber_obj :	$(NSL_HEADERS) $(NSL_CMD_HEADERS)
+	# load $(NSL_KERNEL_CMD_SRC_DIR)/nsl_cmd_main.o
+
+.SCCS_GET:
+	?sccs $(SCCSFLAGS) get $(SCCSGETFLAGS) $@ -G$@

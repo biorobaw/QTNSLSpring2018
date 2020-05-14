@@ -1,0 +1,146 @@
+#
+# NSL : make_all_neuron_src
+# 
+
+# CC
+
+CC = CC
+AR = ar
+AR_FLAGS = rcv # rcv # rv
+CC_DIR = .
+CC_INCL = -I$(CC_DIR)/incl
+CC_FLAGS = -c
+LD_FLAGS = 
+
+# cc
+
+cc = cc
+C_FLAGS = -c
+
+# SYSTEM
+
+SYS_DIR = 
+
+# NSL
+
+NSL_DIR = $(SYS_DIR)/NSL
+
+NSL_NEURON_DIR = $(NSL_DIR)/neuron
+
+NSL_NEURON_SRC_DIR = $(NSL_NEURON_DIR)/src
+NSL_NEURON_INCL_DIR = $(NSL_NEURON_DIR)/incl
+NSL_NEURON_INCL = -I$(NSL_INCL_DIR)
+
+NSL_KERNEL_DIR = $(NSL_DIR)/kernel
+
+NSL_KERNEL_SRC_DIR = $(NSL_KERNEL_DIR)/src
+NSL_KERNEL_INCL_DIR = $(NSL_KERNEL_DIR)/incl
+NSL_KERNEL_INCL = -I$(NSL_KERNEL_INCL_DIR)
+
+NSL_INCL = $(NSL_NEURON_INCL) $(NSL_KERNEL_INCL)
+
+# NSL LIB
+
+NSL_NEURON_ALL_LIB_DIR = $(NSL_NEURON_DIR)/lib
+NSL_NEURON_ARCH_LIB_DIR = $(NSL_NEURON_ALL_LIB_DIR)/$(ARCH)
+NSL_NEURON_LIB_DIR = $(NSL_NEURON_ARCH_LIB_DIR)/$(DEBUG_FG)
+
+NSL_NEURON_ALL_OBJ_DIR = $(NSL_NEURON_DIR)/obj
+NSL_NEURON_ARCH_OBJ_DIR = $(NSL_NEURON_ALL_OBJ_DIR)/$(ARCH)
+NSL_NEURON_OBJ_DIR = $(NSL_NEURON_ARCH_OBJ_DIR)/$(DEBUG_FG)
+
+NSL_KERNEL_ALL_LIB_DIR = $(NSL_KERNEL_DIR)/lib
+NSL_KERNEL_ARCH_LIB_DIR = $(NSL_KERNEL_ALL_LIB_DIR)/$(ARCH)
+NSL_KERNEL_LIB_DIR = $(NSL_KERNEL_ARCH_LIB_DIR)/$(DEBUG_FG)
+
+NSL_KERNEL_ALL_OBJ_DIR = $(NSL_KERNEL_DIR)/obj
+NSL_KERNEL_ARCH_OBJ_DIR = $(NSL_KERNEL_ALL_OBJ_DIR)/$(ARCH)
+NSL_KERNEL_OBJ_DIR = $(NSL_KERNEL_ARCH_OBJ_DIR)/$(DEBUG_FG)
+
+NSL_MAIN_LD = $(NSL_NEURON_OBJ_DIR)/nsl_neuron_main_short.o
+
+NSL_NEURON_LD = $(NSL_NEURON_OBJ_DIR)/nsl_neuron_main.o
+
+NSL_CMD_LD = $(NSL_NEURON_OBJ_DIR)/nsl_neuron_cmd.o
+
+NSL_LIB_LD = $(NSL_NEURON_OBJ_DIR)/nsl_neuron_lib.o
+
+# NSL_ALL_LD = nsl_neuron_main.o nsl_neuron_cmd.o nsl_neuron_lib.o 
+NSL_ALL_LD = $(NSL_NEURON_LD) $(NSL_CMD_LD) # $(NSL_LIB_LD) 
+
+# NSL_ALL_SA = nsl_shared_data.o
+
+nsl_libs:	make_dir nsl_neuron.o nsl_neuron_sa.o
+
+make_dir:	
+	if [ ! -d $(NSL_NEURON_ARCH_LIB_DIR) ]; then mkdir $(NSL_NEURON_ARCH_LIB_DIR); fi;
+	if [ ! -d $(NSL_NEURON_LIB_DIR) ]; then mkdir $(NSL_NEURON_LIB_DIR); fi;
+	if [ ! -d $(NSL_NEURON_ARCH_OBJ_DIR) ]; then mkdir $(NSL_NEURON_ARCH_OBJ_DIR); fi;
+	if [ ! -d $(NSL_NEURON_OBJ_DIR) ]; then mkdir $(NSL_NEURON_OBJ_DIR); fi;
+	
+nsl_neuron_sa.o:	nsl_main
+	if [ ! -d $(NSL_NEURON_ARCH_LIB_DIR) ]; then mkdir $(NSL_NEURON_ARCH_LIB_DIR); fi;
+	if [ ! -d $(NSL_NEURON_LIB_DIR) ]; then mkdir $(NSL_NEURON_LIB_DIR); fi;
+	if [ ! -d $(NSL_NEURON_ARCH_OBJ_DIR) ]; then mkdir $(NSL_NEURON_ARCH_OBJ_DIR); fi;
+	if [ ! -d $(NSL_NEURON_OBJ_DIR) ]; then mkdir $(NSL_NEURON_OBJ_DIR); fi;
+	mv -f $(NSL_MAIN_LD) $(NSL_NEURON_LIB_DIR)/$@
+
+nsl_neuron.o:	nsl_neuron nsl_cmd nsl_lib
+	if [ ! -d $(NSL_NEURON_ARCH_LIB_DIR) ]; then mkdir $(NSL_NEURON_ARCH_LIB_DIR); fi;
+	if [ ! -d $(NSL_NEURON_LIB_DIR) ]; then mkdir $(NSL_NEURON_LIB_DIR); fi;
+	if [ ! -d $(NSL_NEURON_ARCH_OBJ_DIR) ]; then mkdir $(NSL_NEURON_ARCH_OBJ_DIR); fi;
+	if [ ! -d $(NSL_NEURON_OBJ_DIR) ]; then mkdir $(NSL_NEURON_OBJ_DIR); fi;
+	$(LD) -r $(NSL_ALL_LD) -o $@
+	rm -f $(NSL_ALL_LD)
+	mv -f $@ $(NSL_NEURON_LIB_DIR)
+
+libNSLneuron.a:	 nsl_main nsl_neuron nsl_cmd nsl_lib 
+	if [ ! -d $(NSL_NEURON_ARCH_LIB_DIR) ]; then mkdir $(NSL_NEURON_ARCH_LIB_DIR); fi;
+	if [ ! -d $(NSL_NEURON_LIB_DIR) ]; then mkdir $(NSL_NEURON_LIB_DIR); fi;
+	if [ ! -d $(NSL_NEURON_ARCH_OBJ_DIR) ]; then mkdir $(NSL_NEURON_ARCH_OBJ_DIR); fi;
+	if [ ! -d $(NSL_NEURON_OBJ_DIR) ]; then mkdir $(NSL_NEURON_OBJ_DIR); fi;
+	$(AR) $(AR_FLAGS) $@ $(NSL_MAIN_LD) $(NSL_ALL_LD)
+	mv -f $@ $(NSL_NEURON_LIB_DIR)
+	ranlib $(NSL_NEURON_LIB_DIR)/$@
+
+libNSLneuron.so.0.1:	nsl_neuron nsl_cmd nsl_lib  
+	if [ ! -d $(NSL_NEURON_ARCH_LIB_DIR) ]; then mkdir $(NSL_NEURON_ARCH_LIB_DIR); fi;
+	if [ ! -d $(NSL_NEURON_LIB_DIR) ]; then mkdir $(NSL_NEURON_LIB_DIR); fi;
+	if [ ! -d $(NSL_NEURON_ARCH_OBJ_DIR) ]; then mkdir $(NSL_NEURON_ARCH_OBJ_DIR); fi;
+	if [ ! -d $(NSL_NEURON_OBJ_DIR) ]; then mkdir $(NSL_NEURON_OBJ_DIR); fi;
+	$(LD) -o $@ $(LD_FLAGS) $(NSL_ALL_LD)
+	mv -f $@ $(NSL_NEURON_LIB_DIR)
+
+libNSLneuron.sa.0.1:	$(NSL_ALL_SA)
+	if [ ! -d $(NSL_NEURON_ARCH_LIB_DIR) ]; then mkdir $(NSL_NEURON_ARCH_LIB_DIR); fi;
+	if [ ! -d $(NSL_NEURON_LIB_DIR) ]; then mkdir $(NSL_NEURON_LIB_DIR); fi;
+	if [ ! -d $(NSL_NEURON_ARCH_OBJ_DIR) ]; then mkdir $(NSL_NEURON_ARCH_OBJ_DIR); fi;
+	if [ ! -d $(NSL_NEURON_OBJ_DIR) ]; then mkdir $(NSL_NEURON_OBJ_DIR); fi;
+	$(AR) $(AR_FLAGS) $@ $?
+	ranlib $@
+	mv -f $@ $(NSL_NEURON_LIB_DIR)
+
+nsl_main:
+	(cd $(NSL_NEURON_SRC_DIR)/main_src; make -f make_main SYS_DIR=$(SYS_DIR) CC=$(CC) cc=$(cc) "CC_INCL=$(CC_INCL)" "CC_FLAGS=$(CC_FLAGS)" "C_FLAGS=$(C_FLAGS)" "LD_FLAGS=$(LD_FLAGS)")
+
+nsl_neuron:
+	(cd $(NSL_NEURON_SRC_DIR)/main_neuron_src; make -f make_neuron_main SYS_DIR=$(SYS_DIR) CC=$(CC) cc=$(cc) "CC_INCL=$(CC_INCL)" "CC_FLAGS=$(CC_FLAGS)" "C_FLAGS=$(C_FLAGS)" "LD_FLAGS=$(LD_FLAGS)")
+#	$(LD) $(LD_FLAGS) -r $(NSL_NEURON_LD) -o nsl_neuron.o
+
+nsl_cmd:
+	(cd $(NSL_NEURON_SRC_DIR)/cmd_neuron_src; make -f make_neuron_cmd SYS_DIR=$(SYS_DIR) CC=$(CC) cc=$(cc) "CC_INCL=$(CC_INCL)" "CC_FLAGS=$(CC_FLAGS)" "C_FLAGS=$(C_FLAGS)" "LD_FLAGS=$(LD_FLAGS)")
+#	$(LD) $(LD_FLAGS) -r $(NSL_CMD_LD) -o nsl_cmd.o
+
+nsl_lib:
+	(cd $(NSL_NEURON_SRC_DIR)/lib_neuron_src; make -f make_neuron_lib SYS_DIR=$(SYS_DIR) CC=$(CC) cc=$(cc) "CC_INCL=$(CC_INCL)" "CC_FLAGS=$(CC_FLAGS)" "C_FLAGS=$(C_FLAGS)" "LD_FLAGS=$(LD_FLAGS)")
+#	$(LD) $(LD_FLAGS) -r $(NSL_LIB_LD) -o nsl_lib.o
+
+clean-lib:
+	(cd $(NSL_NEURON_LIB_DIR); rm -f *.o)
+
+clean:
+	rm -f *[%~]
+	(cd $(NSL_NEURON_SRC_DIR)/main_neuron_src; make -f make_neuron_main "SYS_DIR=$(SYS_DIR)" clean)
+	(cd $(NSL_NEURON_SRC_DIR)/cmd_neuron_src; make -f make_neuron_cmd "SYS_DIR=$(SYS_DIR)" clean)
+	(cd $(NSL_NEURON_SRC_DIR)/lib_neuron_src; make -f make_neuron_lib "SYS_DIR=$(SYS_DIR)" clean)
+	(cd $(NSL_NEURON_SRC_DIR)/main_src; make -f make_main "SYS_DIR=$(SYS_DIR)" clean)

@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>NSL Installation</title>
+</head>
+
+<body>
+<h2>
+  <p>C++ NSL Project for Eclipse Installation Guide (DEPTRECATED, DONT FOLLOW THIS GUIDE)</p></h2>
+<hr />
+<p>Table of Contents</p>
+<ol>
+  <li><a href="#pre">Prerequisites</a></li>
+  <li><a href="#console">Installing Console-based NSL Project (Windows or Linux)</a></li>
+  <li><a href="#qt">Installing Qt NSL GUI Project on Windows</a></li>
+  <li><a href="#qtlinux">Installing Qt NSL GUI Project on Linux</a></li>
+</ol>
+<hr />
+<h3><a name="pre">Prerequisites</a></h3>
+<p>In order to successfully complete the installation you must first have the following:</p>
+<ul>
+  <li>Eclipse IDE</li>
+  <li>A compiler properly set up with Eclipse IDE such as MinGW</li>
+</ul>
+<p>In this guide Eclipse Neon 3.0 is used. Eclipse Neon 2.0 was used to export the project.</p>
+<h3><a name="console">Installing Console-based NSL Project</a></h3>
+<p>1. Open Eclipse and select a workspace for the project</p>
+<p><img src="images/p1s1.png" width="631" height="295" alt="Workspace Panel" /></p>
+<p>2. Go to File &gt; New &gt; C++ Project and make an empty project</p>
+<p>3. Go to File &gt; Import and select Archive File</p>
+<p>4. Select the CppApplication_NSL.zip file for the &quot;From archive file&quot; dialog box.</p>
+<p>5. Ensure that you are importing the archive file into the root folder of the project. Click Finish afterwards</p>
+<p>6. With the Project Folder selected on the Project Explorer panel, go to Project &gt; Properties</p>
+<p>7. Browse for C/C++ General &gt; Paths and Symbols and under the Includes Tab click on GNU C++</p>
+<p><img src="images/p2s2.png" width="837" height="556" alt="Includes Panel" /></p>
+<p>8. Click on Import Settings</p>
+<p>9. Click Browse to open the Open File Dialog Box</p>
+<p>10. Navigate to your workspace and find NSL\CppApplication_NSL\includes.xml</p>
+<p>11.Click Finish and OK afterwards. Your project hierarchy should look similar to this:</p>
+<p><img src="images/p3s3.png" width="253" height="627" alt="Project Panel" /></p>
+<p>12. Ensure that the includes are properly loaded. Go back to the Paths and Symbols panel and click on an include path. If no error icon appears under the List Box of includes, the include path is recognized. If not you may need to properly direct the path to the correct workspace path.</p>
+<p>13. Go to Project &gt; Build Project. This may take some time. Afterwards you should see the project executable present in the Debug folder in your project folder.</p>
+<h3><a name="qt">Installing Qt NSL GUI Project</a> on Windows</h3>
+<p><em>If you have already downloaded and set up Qt with your compiler tools, skip to step 16.</em></p>
+<p>1. Download Qt at <a href="https://www.qt.io/download-open-source/">https://www.qt.io/download-open-source/</a></p>
+<p>2. Run the Qt installer and proceed with the installation until you arrive at the Component Selection page</p>
+<p>3. Ensure that you install Qt 5.7 and Qt 5.8 with the components associated with your compiler. In this example, MinGW is used:</p>
+<p><img src="images/p4s4.png" width="519" height="569" alt="Qt Components Panel" /></p>
+<p>4. Ensure that you are installing the Tools components associated with your compiler. In this example, MinGW 5.3.0 is required:</p>
+<p><img src="images/p5s5.png" width="266" height="154" alt="Qt Tools List" /></p>
+<p>5. Install Qt with the selected components. After the installation has finished you must add the necessary environment variables to your system. In this guide Windows  7 64-bit is used. </p>
+<p>6. Click on the Start Menu and right click on Computer. Select Properties and click on the Advanced System Settings link.</p>
+<p>7. Click on Environment Variables and under System Variables, locate PATH.</p>
+<p>8. Keeping this window open, go to the installation directory of Qt. In the root folder of Qt, either open the 5.7 or 5.8 folder.</p>
+<p>9. In this folder you should see a folder named after the compiler you are using. Enter this folder and open the bin folder inside. This example uses MinGW, so the directory for this folder is \...\Qt\5.8\mingw53_32/bin. </p>
+<p>10. Copy the absolute path of the bin folder from Windows Explorer's directory URL.</p>
+<p>11. In the Environment Variables window, with PATH selected, click edit and add this URL after a semicolon.</p>
+<p><img src="images/p6s6.png" width="361" height="155" alt="PATH Window" /></p>
+<p>12. Go to the Tools folder in the Qt directory and open the folder named after your compiler and open the bin folder inside. In this example, the directory is \...\Qt\Tools'mingw530_32/bin</p>
+<p>13. Copy the absolute path of this folder and add the URL to PATH's value after a semicolon.</p>
+<p>14. The end of your PATH variable should look similar to this:</p>
+<pre>...\;D:\QtMinGw\5.8\mingw53_32\bin;D:\QtMinGw\Tools\mingw530_32\bin
+</pre>
+<p>15. Click OK and exit the window.</p>
+<p>16. Open Eclipse and go to your Workbench.</p>
+<p>17. Click on Help &gt; Install New Software</p>
+<p>18. Set the Work With: selection to &quot;All Available Websites&quot; and in the search box type &quot;Qt&quot;</p>
+<p>19. Select the Qt Support options for CDT and Programming Languages</p>
+<p><img src="images/p7s7.png" width="656" height="533" alt="Qt Tools Eclipse" /></p>
+<p>20. Install the tools and restart Eclipse afterwards</p>
+<p>21. Go to your workbench and go to File &gt; New &gt; C/C++ Project. Select Qt C++/QML Application</p>
+<p>22. Click next and provide the path to qmake.exe if necessary. This will be in \Qt\{VERSION}\mingw53_32\bin\qmake.exe</p>
+<p>23. Go to your workbench. Your Qt Project hierarchy should look similar to the following in the Project Explorer. There should, however, be no Makefile. You should only see a QML, PRO and starting CPP file with your project name on each.</p>
+<p><img src="images/p9s9.png" width="169" height="268" alt="Qt Project Hierarchy" /></p>
+<p>25. Go to Project &gt; Build Project and ensure that the project compile successfully</p>
+<p>26. Right click on your Qt Project folder and click Import</p>
+<p>27. Select Archive File and select the QtNSL_CppApplication.zip archive</p>
+<p>28. You should have a folder named qtnsl in your Qt Project folder</p>
+<p>29. Copy the contents of qtnsl/qtnsl.pro into your &lt;Project Name&gt;.pro file. Delete qtnsl/qtnsl.pro</p>
+<p><strong>Be sure to only modify paths set in the INCLUDE parameter, do not modify other paths<em>.</em></strong></p>
+<p>31. Verify the validity of the directories you changed in step 30.</p>
+<p>32. You may delete  your &lt;Project Name&gt;.cpp main file and your original QML and QRC files. Do <em>not</em> delete your .PRO file.</p>
+<p>33. Go to Project &gt; Build Project and verify that it is built. This may take a while.</p>
+<p>You should now have compiled your project.</p>
+<h3><a name="qtlinux" id="qt">Installing Qt NSL GUI Project</a> on Linux</h3>
+<p><em>In this example, Ubuntu 16.4 was used</em></p>
+<p>1. Use the repository to install Qt 5 by the following commands:</p>
+<pre>sudo apt-get install qt5-default<br />sudo apt-get install qtdeclarative5-dev</pre>
+<p>2. Open Eclipse and go to your Workbench.</p>
+<p>3. Click on Help &gt; Install New Software</p>
+<p>4. Set the Work With: selection to &quot;All Available Websites&quot; and in the search box type &quot;Qt&quot;</p>
+<p>5. Select the Qt Support options for CDT and Programming Languages</p>
+<p>6. Install the tools and restart Eclipse afterwards</p>
+<p>7. Go to your workbench and go to File &gt; New &gt; C/C++ Project. Select Qt C++/QML Application</p>
+<p>8. Go to your workbench. Your Qt Project hierarchy should look similar to the following in the Project Explorer. There should, however, be no Makefile. You should only see a QML, PRO and starting CPP file with your project name on each.</p>
+<p>9. Go to Project &gt; Build Project and ensure that the project compile successfully</p>
+<p>10. Make sure that the correct version of Qt is being used to compile the blank project. This is optional if you haven't had a previous version.</p>
+<p>11. Right click on your Qt Project folder and click Import</p>
+<p>12. Select Archive File and select the QtNSL_CppApplication.zip archive</p>
+<p>13. You should have a folder named qtnsl in your Qt Project folder</p>
+<p>14. Copy the contents of qtnsl/qtnsl.pro into your &lt;Project Name&gt;.pro file. Delete qtnsl/qtnsl.pro</p>
+<p>15. The INCLUDEPATH values are in Windows format by default. Paste over the values located in qtnsl_directories_linux.txt packaged with the installation with the old INCLUDEPATH values located in the qtnsl.pro file.</p>
+<p>H:\NSL\QtNSL\qtnsl\NSLfiles\MAIN\incl \</p>
+<p>...must bechanged to </p>
+<p>/home/usr/nsl/qtnsl/NSLfiles/MAIN/incl/</p>
+<p>Remember that Linux systems use a different slash</p>
+<p><strong>Be sure to only modify paths set in the INCLUDE parameter, do not modify other paths<em>.</em></strong></p>
+<p>16. Verify the validity of the directories you changed in step 15.</p>
+<p>17. You may delete  your &lt;Project Name&gt;.cpp main file and your original QML and QRC files. Do <em>not</em> delete your .PRO file.</p>
+<p>18. Go to Project &gt; Build Project and verify that it is built. This may take a while.</p>
+<p>You should now have compiled your project.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

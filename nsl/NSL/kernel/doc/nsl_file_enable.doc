@@ -1,0 +1,12 @@
+//	file_enable
+
+file_enable ['type'] ['attr']
+
+- enable obj from file i/o
+
+    type       	   attr       	    description 
+---------- 	---------- 	------------------- 
+[layer] 			enable current layer for file in/out
+		'name' 		enable layer 'name' for file in/out 
+		'index' 	enable layer 'index' for file in/out 
+

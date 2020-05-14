@@ -1,0 +1,130 @@
+# SCCS  @(#)make_all_xkernel_incl	1.9---96/03/14--16:53:02 
+#
+# NSL: make_all_xkernel_incl
+#
+
+SYS_DIR = .
+
+# NSL
+
+XNSL_DIR = $(SYS_DIR)/XNSL
+XNSL_KERNEL_DIR = $(XNSL_DIR)/xkernel
+XNSL_KERNEL_INCL_DIR = $(XNSL_KERNEL_DIR)/incl
+XNSL_KERNEL_MAIN_INCL_DIR = $(XNSL_KERNEL_INCL_DIR)/xkernel_main_incl
+XNSL_KERNEL_ETC_INCL_DIR = $(XNSL_KERNEL_INCL_DIR)/xkernel_etc_incl
+XNSL_KERNEL_GRAPH_INCL_DIR = $(XNSL_KERNEL_INCL_DIR)/xkernel_graph_incl
+XNSL_KERNEL_WIDGET_INCL_DIR = $(XNSL_KERNEL_INCL_DIR)/xkernel_widget_incl
+XNSL_KERNEL_XLIB_INCL_DIR = $(XNSL_KERNEL_INCL_DIR)/xlib_xlib_incl
+XNSL_KERNEL_XVIEW_INCL_DIR = $(XNSL_KERNEL_INCL_DIR)/xlib_xview_incl
+XNSL_KERNEL_MOTIF_INCL_DIR = $(XNSL_KERNEL_INCL_DIR)/xlib_motif_incl
+XNSL_KERNEL_TCLTK_INCL_DIR = $(XNSL_KERNEL_INCL_DIR)/xlib_tcltk_incl
+XNSL_CMD_MAIN_INCL_DIR = $(XNSL_KERNEL_INCL_DIR)/xcmd_main_incl
+
+NSL_DIR = $(SYS_DIR)/NSL
+NSL_KERNEL_DIR = $(NSL_DIR)/kernel
+NSL_KERNEL_INCL_DIR = $(NSL_KERNEL_DIR)/incl
+
+# nsl headers
+
+NSL_HEADERS = $(NSL_KERNEL_INCL_DIR)/nsl_all_kernel_include.h
+
+XNSL_HEADERS = $(XNSL_KERNEL_INCL_DIR)/xnsl_all_xkernel_include.h
+
+XNSL_XKERNEL_HEADERS = $(XNSL_KERNEL_INCL_DIR)/xnsl_xkernel_include.h  	\
+ 		$(XNSL_KERNEL_INCL_DIR)/xnsl.h
+ 
+XNSL_WIDGET_HEADERS = $(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_widget_include.h
+
+XNSL_XVIEW_HEADERS = $(XNSL_KERNEL_XVIEW_INCL_DIR)/xnsl_xview_include.h
+
+XNSL_MOTIF_HEADERS = $(XNSL_KERNEL_MOTIF_INCL_DIR)/xnsl_motif_include.h
+
+XNSL_TCLTK_HEADERS = $(XNSL_KERNEL_TCLTK_INCL_DIR)/xnsl_tcltk_include.h
+
+XNSL_XLIB_HEADERS = $(XNSL_KERNEL_XLIB_INCL_DIR)/xnsl_xlib_include.h
+
+XNSL_KERNEL_WIDGET_HEADERS =	$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_canvas.h \
+		$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_panel.h		\
+ 		$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_frame.h 		\
+		$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_canvas_item.h 	\
+		$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_panel_item.h 	\
+		$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_application.h	\
+		$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_menu.h		\
+		$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_grid.h		\
+		$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_cmd_message.h	\
+ 		$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_pic_button.h	\
+		$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_push_button.h	\
+		$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_scrollable_canvas.h	\
+		$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_scrollable_panel.h	\
+		$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_text_label_canvas.h	\
+		$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_text_label_input.h	\
+		$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_text_label_panel.h	\
+		$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_text_menu_button.h	\
+		$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_callback.h
+ 
+XNSL_KERNEL_MAIN_HEADERS =	$(XNSL_KERNEL_MAIN_INCL_DIR)/xnsl_system.h \
+		$(XNSL_KERNEL_MAIN_INCL_DIR)/xnsl_window.h		\
+		$(XNSL_KERNEL_MAIN_INCL_DIR)/xnsl_window_interface.h	\
+ 		$(XNSL_KERNEL_MAIN_INCL_DIR)/xnsl_display_canvas.h 	\
+		$(XNSL_KERNEL_MAIN_INCL_DIR)/xnsl_display_frame.h 	\
+ 		$(XNSL_KERNEL_MAIN_INCL_DIR)/xnsl_display_panel.h 	\
+		$(XNSL_KERNEL_MAIN_INCL_DIR)/xnsl_display_window.h
+ 
+XNSL_KERNEL_ETC_HEADERS =	$(XNSL_KERNEL_ETC_INCL_DIR)/xnsl_xpublic.h \
+		$(XNSL_KERNEL_ETC_INCL_DIR)/xnsl_manager.h 		\
+		$(XNSL_KERNEL_ETC_INCL_DIR)/xnsl_widget.h 		\
+		$(XNSL_KERNEL_ETC_INCL_DIR)/xnsl_lib_widget.h
+
+XNSL_KERNEL_GRAPH_HEADERS =	$(XNSL_KERNEL_GRAPH_INCL_DIR)/xnsl_area_level_graph.h 	\
+		$(XNSL_KERNEL_GRAPH_INCL_DIR)/xnsl_spatial_graph_2.h 	\
+		$(XNSL_KERNEL_GRAPH_INCL_DIR)/xnsl_spatial_graph_3.h 	\
+		$(XNSL_KERNEL_GRAPH_INCL_DIR)/xnsl_temporal_graph.h	\
+		$(XNSL_KERNEL_GRAPH_INCL_DIR)/xnsl_topology_graph_2.h
+
+XNSL_KERNEL_XLIB_HEADERS = $(XNSL_KERNEL_XLIB_INCL_DIR)/xnsl_xlib_widget.h \
+		$(XNSL_KERNEL_XLIB_INCL_DIR)/xnsl_xlib_graph.h		\
+		$(XNSL_KERNEL_XLIB_INCL_DIR)/xnsl_xlib_grid.h		\
+		$(XNSL_KERNEL_XLIB_INCL_DIR)/xnsl_xlib_text_label.h
+
+XNSL_CMD_MAIN_HEADERS = $(XNSL_CMD_MAIN_INCL_DIR)/xnsl_cmd_display_window.h \
+	$(XNSL_CMD_MAIN_INCL_DIR)/xnsl_cmd_display_frame.h		\
+	$(XNSL_CMD_MAIN_INCL_DIR)/xnsl_cmd_display_canvas.h		\
+	$(XNSL_CMD_MAIN_INCL_DIR)/xnsl_cmd_display_panel.h		\
+	$(XNSL_CMD_MAIN_INCL_DIR)/xnsl_cmd_window_interface.h		\
+	$(XNSL_CMD_MAIN_INCL_DIR)/xnsl_cmd_system.h
+ 
+# motif and tcltk includes are missing
+
+XNSL_KERNEL_HEADERS = $(XNSL_WIDGET_HEADERS) $(XNSL_KERNEL_MAIN_HEADERS) $(XNSL_KERNEL_WIDGET_HEADERS) $(XNSL_KERNEL_ETC_HEADERS) $(XNSL_KERNEL_GRAPH_HEADERS) $(XNSL_CMD_MAIN_HEADERS)
+
+xkernel:	$(XNSL_HEADERS) 
+
+xmain: 
+
+graph: 
+
+xview:	$(XNSL_XVIEW_HEADERS)
+
+motif:	$(XNSL_MOTIF_HEADERS)
+
+tcltk:	$(XNSL_TCLTK_HEADERS)
+
+xlib:
+
+$(XNSL_HEADERS):	$(NSL_HEADERS) $(NSL_WIDGET_HEADERS) $(XNSL_XKERNEL_HEADERS) $(XNSL_KERNEL_HEADERS)
+#	touch $(XNSL_XLIB_HEADERS)
+ 
+$(XNSL_XVIEW_HEADERS):	$(XNSL_HEADERS) $(XNSL_XLIB_HEADERS)
+#	touch $(XNSL_XVIEW_HEADERS)
+
+$(XNSL_MOTIF_HEADERS):	$(XNSL_HEADERS) $(XNSL_XLIB_HEADERS)
+#	touch $(XNSL_MOTIF_HEADERS)
+
+$(XNSL_TCLTK_HEADERS):	$(XNSL_HEADERS) $(XNSL_XLIB_HEADERS)
+#	touch $(XNSL_TCLTK_HEADERS)
+
+
+
+
+
+

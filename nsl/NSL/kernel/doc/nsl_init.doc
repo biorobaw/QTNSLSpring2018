@@ -1,0 +1,8 @@
+//	init
+
+init ['type']
+
+   type  	    description
+----------	-------------------
+[model] 	process model for t=0 
+

@@ -1,0 +1,9 @@
+//	write
+
+write ['type'] ['attr']
+
+    type       	   attr       	    description 
+---------- 	---------- 	------------------- 
+[layer]    			write layer into current file
+		'name'		write layer into file 'name' 
+

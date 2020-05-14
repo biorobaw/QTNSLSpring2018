@@ -1,0 +1,14 @@
+//	input: create
+
+create 'type' [' attr']
+
+    type    	   attr  	    description
+------------	----------	-------------------
+block_stim			create new block stimulus
+	  	  'name'  	create block stim by name 
+icon_stim			create new icon stimulus
+	  	  'name'  	create icon stim by name 
+time_interval			create stimulus time interval
+	  	  'name'  	create time interval by name 
+
+ 

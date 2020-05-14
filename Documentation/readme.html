@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>NSL 3.0 Readme</title>
+</head>
+
+<body>
+<pre>NSL 3.0 Project Updates as of 7/15/2017
+-----------------------------------------------------------------------------
+1. Console NSL Project
+
+	a. Source code changes since the previous version
+	+=========================================================================+
+	
+	The MaxSelector model has been added and packaged with the source code.
+
+	b. Notes on macros and comments
+	+=========================================================================+
+
+	Comments with the tag -bn7 or TODO: are the latest comments in the source code.
+	In the RTS folder, asl_debug should be set to 0 to remove ASL debug output.
+
+	c. Changes to data structures in specific
+	+=========================================================================+
+
+	Typedefs to nsl_num_&lt;number&gt; classes were removed. Class typedefs for vector data<br />	structures refer to nsl_num_&lt;name&gt;. In specific:
+
+	typedef nsl_num_data nsl_data;<br />	typedef nsl_num_vector nsl_vector;<br />	typedef nsl_num_matrix nsl_matrix;
+
+	In addition, nsl_num_&lt;number&gt; classes are no longer template types.
+
+	nsl_num_&lt;name&gt; types were given math and access operators which are defined
+	in their respective headers.
+
+	d. Changes to functions in specific
+	+=========================================================================+
+
+	NSL math library functions were extended in certain cases. Specifically,
+	nsl_num_library.C contains additional math functions for nsl_num_&lt;name&gt; classes
+	that were required by the compiler, such as:
+
+	void NSLmult_equal(nsl_num_data&amp; out, nsl_num_data&amp; a, num_type&amp; b);
+
+	The extended overloads are present from line 1326 to line 2552.
+
+	e. Changes to files
+	+=========================================================================+
+
+	All the math functions for nsl_num_3 and nsl_num_4 were packaged into single
+	source files as nsl_num_3_library.C and nsl_num_4_library.C
+
+	Source files which refer to Tcl/Tk functions were removed.
+
+	Includes are defined with an XML document defining the include paths. This
+	is specifically for Eclipse IDE.
+
+-----------------------------------------------------------------------------
+2. Qt NSL Project
+
+	a. Source code changes since the previous version
+	+=========================================================================+
+
+	In addition to the changes applied to the console version which are included
+	in the Qt version...
+
+	nsl_neuron was removed from the project.
+
+	The Qt NSL project initializes through a Qt-defined application
+	initialization. First the core Qt application is initialized, then
+	NSL initializations are launched which proceed to initialize the
+	Qt NSL interface in QtNSLCore.cpp. First Qt NSL Objects are
+	created, then they are configured and their private resources
+	are allocated, then they are displayed. The remainder of Qt NSL
+	processes are handled within the XNSL system.
+
+	Qt GUI controls have been added and integrated with the XNSL code for
+	visualization. There are two distinct groups of QtNSL classes.
+	Namely, Qt Controls (xlib_qt_controls) and XNSL Objects (xlib_qt_src).
+	Qt Controls are the intermediate classes which connect the XNSL
+	system to Qt. XNSL Objects are the classes which set up visualizations
+	abstractly and prepare them to be drawn.
+
+	XNSL Objects:
+	<strong>xnsl_qt_frame </strong>- This class provides the information for a window frame
+	whose features are relayed to a Qt Object for drawing.
+
+	<strong>xnsl_qt_canvas - </strong>This class defines the area inside a window frame for
+	visualization objects to draw onto.
+
+	<strong>xnsl_qt_graph </strong>- This class provides visualization functionality for
+	graph XNSL graph objects. It takes a Qt-defined pixel map and
+	modifies it before returning it to the canvas in which it operates,
+	which is displayed on a window frame area.
+
+	Qt Controls:
+	<strong>xlib_qt_control</strong> - This class is a custom Qt object from which all Qt Controls are
+	derived. All Qt Controls have display and configuration methods.
+
+	<strong>xlib_qt_interface </strong>- This class is the GUI console and panel that users will 
+	interact with when sending commands and running models in NSL. It holds 
+	a panel which contains buttons to be added with <strong>QPushButton *0AddButtonToPanel(...)
+	</strong>and a console that relays input to the nsl_buffer currently processing input
+	for NSL.
+
+	<strong>xlib_qt_framecontrol </strong>- This class is holds the window frame information as a 
+	QWidget object. Its configuration method sets up the window frame dimensions.
+	<strong>void NewChildEvent(int, int)</strong> is a class-specific method which makes a blank
+	area for a new child. All children visual objects are stacked onto each other
+	vertically.
+
+	<strong>xlib_qt_canvascontrol</strong> - This class sets up a region inside a window frame
+	which child objects draw to. Typically there is one visualization per canvas.
+	The configuration method will set the canvas dimensions and the object will
+	add itself to its frame via parent pointer defined at conception.	
+
+	b. Changes to functions in specific
+	+=========================================================================+	
+
+	nsl_cmd_buffer had a function added to it: nsl_cmd_buffer::qt_run(char *);
+	This function directly executes a command as though the user were typing
+	it into the console version. Therefore any NSL command can be executed
+	using this command.
+
+	nsl_interpreter had two functions added to it: nsl_interpreter::qt_run(char *)
+	which relays a command to the nsl_cmd_buffer as an nsl_shell type. Additionally,
+	nsl_interpreter::qt_step(char *) simulates user command execution and returns
+	the command return value.
+</pre>
+</body>
+</html>

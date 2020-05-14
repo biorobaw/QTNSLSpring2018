@@ -1,0 +1,10 @@
+//	input: reset
+
+reset 'type' 
+	 
+- reset object type 
+	 
+    type            description 
+------------ 	-------------------  
+input_layer  	reset stimuli list 
+ 

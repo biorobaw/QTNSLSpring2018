@@ -1,0 +1,16 @@
+//	print
+
+print ['type'] [' attr'] 
+	 
+print data information for object type 
+	 
+    type     	   attr   	    description 
+------------ 	---------- 	------------------- 
+[layer]		  		print current layer values
+		  'name'  	print layer values accessed by name 
+		  'index'  	print layer values accessed by index 
+data_value   			old version of "assign layer" 
+
+- 'name' is a string name ('*' is the wildcard)
+- 'index' is an integer 
+

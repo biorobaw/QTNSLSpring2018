@@ -1,0 +1,9 @@
+//	kernel: update
+ 
+update ['type'] ['attr'] 
+	 
+-update a particular object 
+
+    type    	   attr  	    description
+------------	----------	-------------------
+ 

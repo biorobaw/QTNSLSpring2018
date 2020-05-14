@@ -1,0 +1,15 @@
+//	input: update
+
+update 'type' 
+	 
+update buffer info to objects 
+	 
+- update 'type' [' attr']
+
+    type    	   attr  	    description
+------------	----------	-------------------
+block_stim			update block stimulus
+icon_stim			update new icon stimulus
+time_interval			update stimulus time interval
+ 
+

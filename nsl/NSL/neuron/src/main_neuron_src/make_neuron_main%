@@ -1,0 +1,173 @@
+#
+# NSL: make_neuron_main
+#
+
+# CC
+
+CC_DIR = .
+CC_INCL = -I$(CC_DIR)/incl
+
+# SYSTEM
+
+SYS_DIR = .
+
+# NSL
+
+NSL_DIR = $(SYS_DIR)/NSL
+
+NSL_KERNEL_DIR = $(NSL_DIR)/kernel
+NSL_KERNEL_INCL_DIR = $(NSL_KERNEL_DIR)/incl
+
+NSL_NEURON_DIR = $(NSL_DIR)/neuron
+NSL_NEURON_INCL_DIR = $(NSL_NEURON_DIR)/incl
+NSL_NEURON_SRC_DIR = $(NSL_NEURON_DIR)/src
+NSL_NEURON_LIB_DIR = $(NSL_NEURON_DIR)/lib/$(ARCH)/$(DEBUG_FG)
+NSL_NEURON_OBJ_DIR = $(NSL_NEURON_DIR)/obj/$(ARCH)/$(DEBUG_FG)
+
+NSL_NEURON_MAIN_INCL_DIR = $(NSL_NEURON_INCL_DIR)/main_neuron_incl
+NSL_NEURON_MAIN_SRC_DIR = $(NSL_NEURON_SRC_DIR)/main_neuron_src
+NNMSD = $(NSL_NEURON_MAIN_SRC_DIR)
+NNMOD = $(NSL_NEURON_OBJ_DIR)
+
+NSL_INCL = -I$(NSL_KERNEL_INCL_DIR) -I$(NSL_NEURON_INCL_DIR)
+
+# compilation specs
+
+CC = CC
+AR = ar
+cc = cc
+CC_FLAGS = -c
+LD_FLAGS = 
+
+# nsl headers
+
+NSL_HEADERS = 	$(NSL_KERNEL_INCL_DIR)/nsl_all_kernel_include.h 	\
+		$(NSL_NEURON_INCL_DIR)/nsl_all_neuron_include.h 	\
+		$(NSL_NEURON_INCL_DIR)/nsl_neuron_include.h
+
+NSL_NEURON_HEADERS =	$(NSL_NEURON_MAIN_INCL_DIR)/nsl_neural_network.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_neuron_layer.h 		\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_neuron_data.h 		\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_neuron_vector.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_neuron_matrix.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_site_layer.h 		\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_site_data.h 		\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_site_vector.h 		\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_site_matrix.h 		\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_layer.h 		\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data.h 		\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector.h 		\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_matrix.h 		\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_data.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_vector.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_matrix.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_data.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_vector.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_matrix.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_matrix_data.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_matrix_vector.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_matrix_matrix.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_data_data.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_data_vector.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_data_matrix.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_vector_data.h	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_vector_vector.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_vector_matrix.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_matrix_data.h	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_matrix_vector.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_matrix_matrix.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_data_data.h	  \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_data_vector.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_data_matrix.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_vector_data.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_vector_vector.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_vector_matrix.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_matrix_data.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_matrix_vector.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_matrix_matrix.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_matrix_data_data.h	  \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_matrix_data_vector.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_matrix_data_matrix.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_matrix_vector_data.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_matrix_vector_vector.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_matrix_vector_matrix.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_matrix_matrix_data.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_matrix_matrix_vector.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_matrix_matrix_matrix.h
+
+# nsl main neuron files $(NSL_NEURON_MAIN_SRC_DIR)
+
+NSL_NEURON_OBJ =	$(NNMOD)/nsl_neural_network.o 		\
+		 	$(NNMOD)/nsl_neuron_layer.o 		\
+			$(NNMOD)/nsl_neuron_data.o 		\
+			$(NNMOD)/nsl_neuron_vector.o 		\
+			$(NNMOD)/nsl_neuron_matrix.o 		\
+			$(NNMOD)/nsl_site_layer.o 		\
+			$(NNMOD)/nsl_site_data.o 		\
+			$(NNMOD)/nsl_site_vector.o 		\
+			$(NNMOD)/nsl_site_matrix.o 		\
+			$(NNMOD)/nsl_link_layer.o 		\
+			$(NNMOD)/nsl_link_data.o 		\
+			$(NNMOD)/nsl_link_vector.o 		\
+			$(NNMOD)/nsl_link_matrix.o 		\
+			$(NNMOD)/nsl_link_data_data.o 		\
+			$(NNMOD)/nsl_link_data_vector.o 	\
+			$(NNMOD)/nsl_link_data_matrix.o 	\
+			$(NNMOD)/nsl_link_vector_data.o 	\
+			$(NNMOD)/nsl_link_vector_vector.o 	\
+			$(NNMOD)/nsl_link_vector_matrix.o 	\
+			$(NNMOD)/nsl_link_matrix_data.o 	\
+			$(NNMOD)/nsl_link_matrix_vector.o 	\
+			$(NNMOD)/nsl_link_matrix_matrix.o 	\
+			$(NNMOD)/nsl_link_data_data_data.o 	\
+			$(NNMOD)/nsl_link_data_data_vector.o 	\
+			$(NNMOD)/nsl_link_data_data_matrix.o 	\
+			$(NNMOD)/nsl_link_data_vector_data.o	\
+			$(NNMOD)/nsl_link_data_vector_vector.o	\
+			$(NNMOD)/nsl_link_data_vector_matrix.o	\
+			$(NNMOD)/nsl_link_data_matrix_data.o	\
+			$(NNMOD)/nsl_link_data_matrix_vector.o	\
+			$(NNMOD)/nsl_link_data_matrix_matrix.o	\
+			$(NNMOD)/nsl_link_vector_data_data.o	\
+			$(NNMOD)/nsl_link_vector_data_vector.o	\
+			$(NNMOD)/nsl_link_vector_data_matrix.o	\
+			$(NNMOD)/nsl_link_vector_vector_data.o	\
+			$(NNMOD)/nsl_link_vector_vector_vector.o \
+			$(NNMOD)/nsl_link_vector_vector_matrix.o \
+			$(NNMOD)/nsl_link_vector_matrix_data.o	\
+			$(NNMOD)/nsl_link_vector_matrix_vector.o \
+			$(NNMOD)/nsl_link_vector_matrix_matrix.o \
+			$(NNMOD)/nsl_link_matrix_data_data.o	\
+			$(NNMOD)/nsl_link_matrix_data_vector.o	\
+			$(NNMOD)/nsl_link_matrix_data_matrix.o	\
+			$(NNMOD)/nsl_link_matrix_vector_data.o	\
+			$(NNMOD)/nsl_link_matrix_vector_vector.o \
+			$(NNMOD)/nsl_link_matrix_vector_matrix.o \
+			$(NNMOD)/nsl_link_matrix_matrix_data.o	\
+			$(NNMOD)/nsl_link_matrix_matrix_vector.o \
+			$(NNMOD)/nsl_link_matrix_matrix_matrix.o
+
+#NSL_NEURON_OBJ =	$(NSL_NEURON_SRC:.C=.o)
+
+$(NNMOD)/nsl_neuron_main.o :	$(NSL_HEADERS) $(NSL_NEURON_HEADERS) $(NSL_NEURON_OBJ)
+	$(LD) $(LD_FLAGS) -r -o $@ $(NSL_NEURON_OBJ)
+
+.SUFFIXES: .C .o
+
+$(NNMOD)/%.o:	$(NSL_HEADERS) $(NSL_KERNEL_HEADERS) $(NNMSD)/%.C
+	$(CC) $(CC_FLAGS) $(NSL_KERNEL_INCL) $(CC_INCL) -o $(NNMOD)/${@F} $(NNMSD)/${*F}.C
+
+# if the above does not work for your machine, you will need to duplicate the following lines over and over again
+# $(NNMOD)/nsl_layer.o:	$(NSL_HEADERS) $(NSL_KERNEL_HEADERS) $(NNMSD)/nsl_layer.C
+#	$(CC) $(CC_FLAGS) $(NSL_KERNEL_INCL) $(CC_INCL) -o $(NNMOD)/${@F} $(NNMSD)/${*F}.C
+
+#.C.o :	$(NSL_HEADERS) $(NSL_NEURON_HEADERS)
+#	$(CC) $(CC_FLAGS) $(NSL_INCL) $(CC_INCL) $< -o $@
+
+# clean
+
+clean:
+	rm -f nsl_neuron_main.o
+	rm -f $(NSL_NEURON_MAIN_OBJ_DIR)/*.o
+	rm -f $(NSL_NEURON_MAIN_SRC_DIR)/*[%~]
+

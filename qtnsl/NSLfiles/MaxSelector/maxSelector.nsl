@@ -1,0 +1,26 @@
+# maxselector.nsl
+
+nsl set system.model MaxSelectorModel
+nsl set system.simEndTime 20.0
+nsl set system.simDelta 0.01
+#nsl set system.diff.integration EULER
+nsl set system.diff.delta 0.01
+
+nsl set MaxSelectorModel.maxSelector.tu 1.0
+nsl set MaxSelectorModel.maxSelector.tv 1.0
+nsl set MaxSelectorModel.maxSelector.k 0.1
+nsl set MaxSelectorModel.maxSelector.wuu 1.0
+nsl set MaxSelectorModel.maxSelector.wuv 1.0
+nsl set MaxSelectorModel.maxSelector.wvu 1.0
+nsl set MaxSelectorModel.maxSelector.hu 0.1
+nsl set MaxSelectorModel.maxSelector.hv 0.5
+
+nsl set MaxSelectorModel.stimulus.out 0 0 0 0 1.0 0 0.5 0 0 0 
+
+nsl create window_interface
+
+nsl create display_frame .maxSelector
+
+create display_window .maxSelector.s -width 600 -height 200 -wymin -3.0 -wymax 3.0 -grid NSL_ON -layer MaxSelectorModel.stimulus.out -graph area_level_graph
+create display_window .maxSelector.up -width 600 -height 200 -wymin -3.0 -wymax 3.0 -wystep .75 -wxstep 10.0 -t1 20.0 -layer MaxSelectorModel.maxSelector.up -graph temporal_graph -grid NSL_ON -x_axis NSL_ON
+create display_window .maxSelector.uf -width 600 -height 200 -wymin -3.0 -wymax 3.0 -wystep .75 -wxstep 10.0 -t1 20.0 -layer MaxSelectorModel.maxSelector.uf -graph temporal_graph -grid NSL_ON -x_axis NSL_ON

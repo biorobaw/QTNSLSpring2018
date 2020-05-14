@@ -1,0 +1,10 @@
+// 	sh
+
+sh ['cmd']
+
+- execute a shell command
+
+  cmd  		   description
+-------		----------------
+'cmd'		desired sh command
+	

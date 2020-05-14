@@ -1,0 +1,291 @@
+/**************************************************************/
+/*                                                            */
+/*                       nsl_neuron_main.C                    */
+/*                                                            */
+/**************************************************************/
+
+# include "../../../../MAIN/src/sys_main_src/nsl_all_kernel_include.h"
+# include "../../incl/nsl_all_neuron_include.h"
+
+void nsl_neuron_init()
+{
+ 	nsl_cmd_buf* CMD_SHELL;
+	if ((CMD_SHELL = (nsl_cmd_buf*) 
+		NSL.get_shell_list()->get_top()) == NULL)
+	{
+		cmd_error("neuron_init: NULL CMD_SHELL");
+		return;
+	}
+// check variable args here
+	nsl_library* lib;
+	lib = new nsl_ramp_data_library(0,1);
+	lib = new nsl_ramp_vector_library(0,1);
+	lib = new nsl_ramp_matrix_library(0,1);
+	lib = new nsl_step_data_library(0,1);
+	lib = new nsl_step_vector_library(0,1);
+	lib = new nsl_step_matrix_library(0,1);
+
+	nsl_cmd_type* cmd_type;
+	nsl_layer* cmd_set;
+
+// neural network
+	cmd_type = new nsl_cmd_neural_network;
+	CMD_SHELL->add_type(cmd_type);
+	CMD_SHELL->add_type_i_children(cmd_type,"model");
+	CMD_SHELL->add_type_m_parent(cmd_type,"system");
+
+// neuron layer
+	cmd_type = new nsl_cmd_neuron_layer;
+	CMD_SHELL->add_type(cmd_type);
+	CMD_SHELL->add_type_i_children(cmd_type,"layer");
+	CMD_SHELL->add_type_m_parent(cmd_type,"model");
+
+// neuron data
+	cmd_type = new nsl_cmd_neuron_data;
+	CMD_SHELL->add_type_i_children(cmd_type,"neuron");
+	CMD_SHELL->add_type_m_parent(cmd_type,"model");
+
+// neuron vector
+	cmd_type = new nsl_cmd_neuron_vector;
+	CMD_SHELL->add_type_i_children(cmd_type,"neuron");
+	CMD_SHELL->add_type_m_parent(cmd_type,"model");
+
+// neuron matrix
+	cmd_type = new nsl_cmd_neuron_matrix;
+	CMD_SHELL->add_type_i_children(cmd_type,"neuron");
+	CMD_SHELL->add_type_m_parent(cmd_type,"model");
+
+// site layer
+	cmd_type = new nsl_cmd_site_layer;
+	CMD_SHELL->add_type(cmd_type);
+	CMD_SHELL->add_type_i_children(cmd_type,"layer");
+	CMD_SHELL->add_type_m_parent(cmd_type,"neuron");
+
+	cmd_set = new nsl_str_data("name");
+ 	cmd_type->add_data(cmd_set);
+
+	cmd_set = new nsl_int_data("index");
+ 	cmd_type->add_data(cmd_set);
+
+// site data
+	cmd_type = new nsl_cmd_site_data;
+	CMD_SHELL->add_type_i_children(cmd_type,"site_layer");
+	CMD_SHELL->add_type_m_parent(cmd_type,"neuron_data");
+
+// site vector
+	cmd_type = new nsl_cmd_site_vector;
+	CMD_SHELL->add_type_i_children(cmd_type,"site_layer");
+	CMD_SHELL->add_type_m_parent(cmd_type,"neuron_vector");
+
+// site matrix
+	cmd_type = new nsl_cmd_site_matrix;
+	CMD_SHELL->add_type_i_children(cmd_type,"site_layer");
+	CMD_SHELL->add_type_m_parent(cmd_type,"neuron_matrix");
+
+// link layer
+	cmd_type = new nsl_cmd_link_layer;
+	CMD_SHELL->add_type_i_children(cmd_type,"layer");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_layer");
+
+	cmd_set = new nsl_str_data("name");
+ 	cmd_type->add_data(cmd_set);
+
+	cmd_set = new nsl_int_data("index");
+ 	cmd_type->add_data(cmd_set);
+
+// link data
+	cmd_type = new nsl_cmd_link_data;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_layer");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_data");
+
+// link vector
+	cmd_type = new nsl_cmd_link_vector;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_layer");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_vector");
+   
+// link matrix
+	cmd_type = new nsl_cmd_link_matrix;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_layer");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_matrix");
+   
+// link data data
+	cmd_type = new nsl_cmd_link_data_data;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_data");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_data");
+
+// link vector data
+	cmd_type = new nsl_cmd_link_vector_data;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_data");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_data");
+
+// link matrix data
+	cmd_type = new nsl_cmd_link_matrix_data;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_data");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_data");
+
+// link data vector
+	cmd_type = new nsl_cmd_link_data_vector;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_vector");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_vector");
+   
+// link vector vector
+	cmd_type = new nsl_cmd_link_vector_vector;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_vector");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_vector");
+
+// link matrix vector
+	cmd_type = new nsl_cmd_link_matrix_vector;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_vector");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_vector");
+
+// link data matrix
+	cmd_type = new nsl_cmd_link_data_matrix;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_matrix");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_matrix");
+   
+// link vector matrix
+	cmd_type = new nsl_cmd_link_vector_matrix;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_matrix");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_matrix");
+
+// link matrix matrix
+	cmd_type = new nsl_cmd_link_matrix_matrix;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_matrix");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_matrix");
+
+// link data data data
+	cmd_type = new nsl_cmd_link_data_data_data;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_data_data");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_data");
+
+// link data vector data
+	cmd_type = new nsl_cmd_link_data_vector_data;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_data_data");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_data");
+
+// link data matrix data
+	cmd_type = new nsl_cmd_link_data_matrix_data;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_data_data");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_data");
+
+// link data data vector
+	cmd_type = new nsl_cmd_link_data_data_vector;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_data_vector");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_vector");
+   
+// link data vector vector
+	cmd_type = new nsl_cmd_link_data_vector_vector;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_data_vector");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_vector");
+
+// link data matrix vector
+	cmd_type = new nsl_cmd_link_data_matrix_vector;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_data_vector");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_vector");
+   
+// link data data matrix
+	cmd_type = new nsl_cmd_link_data_data_matrix;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_data_matrix");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_matrix");
+   
+// link data vector matrix
+	cmd_type = new nsl_cmd_link_data_vector_matrix;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_data_matrix");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_matrix");
+
+// link data matrix matrix
+	cmd_type = new nsl_cmd_link_data_matrix_vector;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_data_matrix");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_matrix");
+   
+// link vector data data
+	cmd_type = new nsl_cmd_link_vector_data_data;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_vector_data");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_data");
+
+// link vector vector data
+	cmd_type = new nsl_cmd_link_vector_vector_data;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_vector_data");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_data");
+
+// link vector matrix data
+	cmd_type = new nsl_cmd_link_vector_matrix_data;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_vector_data");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_data");
+
+// link vector data vector
+	cmd_type = new nsl_cmd_link_vector_data_vector;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_vector_vector");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_vector");
+   
+// link vector vector vector
+	cmd_type = new nsl_cmd_link_vector_vector_vector;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_vector_vector");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_vector");
+
+// link vector matrix vector
+	cmd_type = new nsl_cmd_link_vector_matrix_vector;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_vector_vector");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_vector");
+   
+// link vector data matrix
+	cmd_type = new nsl_cmd_link_vector_data_matrix;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_vector_matrix");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_matrix");
+   
+// link vector vector matrix
+	cmd_type = new nsl_cmd_link_vector_vector_matrix;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_vector_matrix");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_matrix");
+
+// link vector matrix matrix
+	cmd_type = new nsl_cmd_link_vector_matrix_matrix;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_vector_matrix");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_matrix");
+   
+// link matrix data data
+	cmd_type = new nsl_cmd_link_matrix_data_data;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_matrix_data");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_data");
+
+// link matrix vector data
+	cmd_type = new nsl_cmd_link_matrix_vector_data;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_matrix_data");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_data");
+
+// link matrix matrix data
+	cmd_type = new nsl_cmd_link_matrix_matrix_data;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_matrix_data");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_data");
+
+// link matrix data vector
+	cmd_type = new nsl_cmd_link_matrix_data_vector;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_matrix_vector");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_vector");
+   
+// link matrix vector vector
+	cmd_type = new nsl_cmd_link_matrix_vector_vector;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_matrix_vector");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_vector");
+
+// link matrix matrix vector
+	cmd_type = new nsl_cmd_link_matrix_matrix_vector;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_matrix_vector");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_vector");
+   
+// link matrix data matrix
+	cmd_type = new nsl_cmd_link_matrix_data_matrix;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_matrix_matrix");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_matrix");
+   
+// link matrix vector matrix
+	cmd_type = new nsl_cmd_link_matrix_vector_matrix;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_matrix_matrix");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_matrix");
+
+// link matrix matrix matrix
+	cmd_type = new nsl_cmd_link_matrix_matrix_matrix;
+	CMD_SHELL->add_type_i_children(cmd_type,"link_matrix_matrix");
+	CMD_SHELL->add_type_m_parent(cmd_type,"site_matrix");
+}
+// nsl_sys_module nsl_mod_neuron_init("neuron",nsl_neuron_init,0);

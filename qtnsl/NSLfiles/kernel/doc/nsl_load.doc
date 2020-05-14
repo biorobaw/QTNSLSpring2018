@@ -1,0 +1,8 @@
+//	load,read
+
+load ['type'] 'attr'
+ 
+   type		   attr       	    description 
+------------ 	---------- 	------------------- 
+[file]		 'name'		read from file 'name' 
+

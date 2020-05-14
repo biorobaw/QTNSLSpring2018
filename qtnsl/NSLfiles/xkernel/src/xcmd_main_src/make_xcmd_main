@@ -1,0 +1,242 @@
+# SCCS  @(#)make_xcmd_main	1.7---96/02/21--15:12:49 
+#
+# NSL: make_xcmd_main
+# 
+
+# CC
+
+CC_DIR = .
+CC_INCL = -I$(CC_DIR)/incl
+
+# SYS_DIR
+
+SYS_DIR = .
+
+# NSL
+
+NSL_DIR = $(SYS_DIR)/NSL/kernel
+NSL_INCL_DIR = $(NSL_DIR)/incl
+NSL_INCL = -I$(NSL_INCL_DIR)
+
+# X NSL
+
+XNSL_KERNEL_DIR = $(SYS_DIR)/XNSL/xkernel
+XNSL_KERNEL_INCL_DIR = $(XNSL_KERNEL_DIR)/incl
+XNSL_KERNEL_LIB_DIR = $(XNSL_KERNEL_DIR)/lib/$(ARCH)/$(DEBUG_FG)
+XNSL_KERNEL_OBJ_DIR = $(XNSL_KERNEL_DIR)/obj/$(ARCH)/$(DEBUG_FG)
+
+
+XNSL_CMD_INCL_DIR = $(XNSL_KERNEL_INCL_DIR)/xcmd_main_incl
+XNSL_INCL = -I$(XNSL_KERNEL_INCL_DIR)
+XNSL_CMD_SRC_DIR = $(XNSL_KERNEL_DIR)/src/xcmd_main_src
+
+XNSL_KERNEL_INCL_DIR = $(XNSL_KERNEL_DIR)/incl
+XNSL_KERNEL_ETC_INCL_DIR = $(XNSL_KERNEL_INCL_DIR)/xkernel_etc_incl
+XNSL_KERNEL_WIDGET_INCL_DIR = $(XNSL_KERNEL_INCL_DIR)/xkernel_widget_incl
+
+# x dir
+
+X_INCL_DIR = /usr/openwin/include
+X_INCL = -I$(X_INCL_DIR)
+
+# compilation specs
+
+CC = CC
+AR = ar
+cc = cc
+CC_FLAGS = -c
+LD_FLAGS = 
+TEMPLATE_FLAGS =
+
+# window headers
+
+XNSL_HEADERS =	$(NSL_INCL_DIR)/nsl_all_kernel_include.h 		\
+		$(XNSL_KERNEL_INCL_DIR)/xkernel.h 	\
+		$(XNSL_KERNEL_INCL_DIR)/xnsl_command_include.h		\
+		$(XNSL_KERNEL_INCL_DIR)/xnsl_xkernel_include.h 		\
+		$(XNSL_KERNEL_ETC_INCL_DIR)/xnsl_etc_include.h	\
+		$(XNSL_KERNEL_WIDGET_INCL_DIR)/xnsl_widget_include.h
+
+XNSL_CMD_HEADERS = $(XNSL_CMD_INCL_DIR)/xnsl_cmd_system.h	\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_frame.h 		\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_window_interface.h	 \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_window.h 			\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_window.h 		\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_window_data.h 	\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_window_vector.h 	\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_window_matrix.h 	\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_window_3.h 	\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_window_4.h 	\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_window_area_level.h \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_window_spatial_2.h  \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_window_spatial_3.h  \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_window_temporal.h   \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas.h 		\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_data.h 	\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_vector.h 	\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_matrix.h 	\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_3.h 	\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_4.h 	\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_area_level.h \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_area_level_data.h \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_area_level_vector.h \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_area_level_matrix.h \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_area_level_3.h \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_area_level_4.h \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_spatial_2.h  \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_spatial_2_data.h  \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_spatial_2_vector.h  \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_spatial_2_matrix.h  \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_spatial_3.h  \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_spatial_3_data.h  \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_spatial_3_vector.h  \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_spatial_3_matrix.h  \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_temporal.h   \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_temporal_data.h   \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_temporal_vector.h   \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_canvas_temporal_matrix.h   \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel.h 		\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_data.h 	\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_vector.h 	\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_matrix.h 	\
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_area_level.h  \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_area_level_data.h \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_area_level_vector.h \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_area_level_matrix.h \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_spatial_2.h   \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_spatial_2_data.h  \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_spatial_2_vector.h  \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_spatial_2_matrix.h  \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_spatial_3.h   \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_spatial_3_data.h  \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_spatial_3_vector.h  \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_spatial_3_matrix.h  \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_temporal.h \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_temporal_data.h   \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_temporal_vector.h   \
+	$(XNSL_CMD_INCL_DIR)/xnsl_cmd_display_panel_temporal_matrix.h
+
+# window object files	$(XNSL_CMD_SRC_DIR)
+
+#XNSL_CMD_SRC = xnsl_cmd_window.C			\
+#		xnsl_cmd_display_window.C 		\
+#		xnsl_cmd_display_frame.C 		\
+#		xnsl_cmd_display_canvas.C 		\
+#		xnsl_cmd_display_panel.C 		\
+#		xnsl_cmd_window_interface.C		\
+#		xnsl_cmd_system.C			\
+#		xnsl_cmd_display_window_area_level.C 	\
+#		xnsl_cmd_display_window_spatial_2.C  	\
+#		xnsl_cmd_display_window_spatial_3.C	\
+#		xnsl_cmd_display_window_temporal.C	\
+#		xnsl_cmd_display_canvas_area_level.C 	\
+#		xnsl_cmd_display_canvas_spatial_2.C  	\
+#		xnsl_cmd_display_canvas_spatial_3.C	\
+#		xnsl_cmd_display_canvas_temporal.C	\
+#		xnsl_cmd_display_panel_area_level.C 	\
+#		xnsl_cmd_display_panel_spatial_2.C  	\
+#		xnsl_cmd_display_panel_spatial_3.C	\
+#		xnsl_cmd_display_panel_temporal.C
+
+XNSL_CMD_OBJ = $(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_system.o		\
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_frame.o		\
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_window_interface.o	\
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_window.o 		\
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_window.o 	\
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_window_data.o 	\
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_window_vector.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_window_matrix.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_window_3.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_window_4.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_window_area_level.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_window_spatial_2.o  \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_window_spatial_3.o\
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_window_temporal.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas.o 	\
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_data.o 	\
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_vector.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_matrix.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_3.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_4.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_area_level.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_area_level_data.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_area_level_vector.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_area_level_matrix.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_area_level_3.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_area_level_4.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_spatial_2.o  \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_spatial_2_data.o  \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_spatial_2_vector.o  \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_spatial_2_matrix.o  \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_spatial_3.o\
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_spatial_3_data.o  \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_spatial_3_vector.o  \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_spatial_3_matrix.o  \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_temporal.o\
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_temporal_data.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_temporal_vector.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_canvas_temporal_matrix.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel.o 	\
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_data.o 	\
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_vector.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_matrix.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_area_level.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_area_level_data.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_area_level_vector.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_area_level_matrix.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_spatial_2.o  \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_spatial_2_data.o  \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_spatial_2_vector.o  \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_spatial_2_matrix.o  \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_spatial_3.o\
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_spatial_3_data.o  \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_spatial_3_vector.o  \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_spatial_3_matrix.o  \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_temporal.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_temporal_data.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_temporal_vector.o \
+	$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_display_panel_temporal_matrix.o
+
+# nsl make object files
+
+#XNSL_CMD_OBJ = $(XNSL_CMD_SRC:.C=.o)
+
+$(XNSL_KERNEL_OBJ_DIR)/xnsl_cmd_main.o :	$(XNSL_CMD_OBJ)
+	$(LD) $(LD_FLAGS) -r $(XNSL_CMD_OBJ) -o $@
+
+.SUFFIXES: .C .o
+
+$(XNSL_KERNEL_OBJ_DIR)/%.o:   $(XNSL_HEADERS) $(XNSL_CMDL_HEADERS) %.C
+	$(CC) $(CC_FLAGS) $(TEMPLATE_FLAGS) $(XNSL_INCL) $(NSL_INCL) $(X_INCL) $(CCL_INCL) -o $(XNSL_KERNEL_OBJ_DIR)/${@F} ${*F}.C
+
+
+#.C.o :	$(XNSL_HEADERS) $(XNSL_CMD_HEADERS)
+#	$(CC) $(CC_FLAGS) $(XNSL_INCL) $(NSL_INCL) $(X_INCL) $(CC_INCL) $< -o $@
+
+# clean
+
+clean:	
+	rm -f xnsl_cmd_main.o
+	rm -f $(XNSL_CMD_SRC_DIR)/*.o
+	rm -f $(XNSL_CMD_SRC_DIR)/*[%~]
+
+# saber
+
+SABER_FLAGS =
+
+saber_src :	$(XNSL_HEADERS)  $(XNSL_CMD_HEADERS)
+	# load $(SABER_FLAGS) $(X_NSL_INCL) $(NSL_INCL) $(X_INCL) $(XNSL_CMD_SRC)
+
+saber_obj :	$(XNSL_HEADERS)  $(XNSL_CMD_HEADERS)
+	# load $(XNSL_CMD_SRC_DIR)/xnsl_cmd_main.o
+
+
+
+
+
+
+
+
+
+.SCCS_GET:
+	?sccs $(SCCSFLAGS) get $(SCCSGETFLAGS) $@ -G$@

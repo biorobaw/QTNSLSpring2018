@@ -1,0 +1,25 @@
+//	status
+
+status ['type'] [' attr'] 
+	 
+- print status information for object type 
+	 
+    type       	   attr       	    description 
+------------ 	---------- 	------------------- 
+system    			list all linked models 
+file    			list all active data files 
+diff    			diff status 
+[model]    			status on current model 
+	  	  'name'  	status on a model by name 
+	  	  'index'  	status on a model by index 
+module    			status on current module 
+		  'name'  	status on a module by name 
+		  'index'  	status on a module by index 
+layer    			status on current layer 
+		  'name'  	status on a layer by name 
+		  'index'  	status on a layer by index 
+ 
+	 
+- 'name' is either a string name ('*' is the wildcard) 
+- 'index' is an integer 
+ 

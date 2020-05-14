@@ -1,0 +1,16 @@
+//	input: status
+
+status 'type' [' attr'] 
+	 
+- print status information for object type 
+	 
+    type       	   attr       	    description 
+------------ 	---------- 	------------------- 
+input_layer   			status on current input_layer 
+		  'name'  	status on an input_layer by name 
+		  'index'  	status on an input_layer by index 
+stim   				print all input layer stimuli 
+		  'name'  	print stimuli of an input layer by name 
+		  'index'  	print stimuli of an input layer by index 
+
+ 

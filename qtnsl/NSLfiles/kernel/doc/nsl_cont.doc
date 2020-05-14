@@ -1,0 +1,16 @@
+//	cont
+
+cont ['type'] ['attr']
+
+ - cont processing until specified time or end_time
+
+    type	    attr  	    description
+-----------	------------	-------------------
+[model]			    	process model for current_time<t<=end_time 
+		'ts'  		process model for current_time<t<=ts 
+file				continue reading from current file
+		'name' 		continue reading from 'name' file
+
+- 'ts' should be a float number
+
+

@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/">
+<file alias="NSLfiles/kernel/incl/kernel_etc_incl/nsl_streambuf.h">E:/NSL/workspace/qtnsl/NSLfiles/kernel/incl/kernel_etc_incl/nsl_streambuf.h</file>
+<file alias="NSLFiles/kernel/incl/kernel_etc_incl/nsl_shell.h">E:/NSL/workspace/qtnsl/NSLFiles/kernel/incl/kernel_etc_incl/nsl_shell.h</file>
+</qresource>
+</RCC>

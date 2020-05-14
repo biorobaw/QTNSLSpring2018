@@ -1,0 +1,21 @@
+//	disable
+
+disable ['type'] [' attr'] 
+	 
+- disable processing for object type 
+	 
+    type       	   attr       	    description 
+------------ 	---------- 	-------------------  
+model    			disable current model
+	  	  'name'  	disable a particular model by name 
+	  	  'index'  	disable a particular model by index 
+[module]    			disable current module 
+	  	  'name'  	disable a particular module by name 
+	  	  'index'  	disable a particular module by index 
+layer    			disable current layer 
+	  	  'name'  	disable a particular layer by name 
+	  	  'index'  	disable a particular layer by index 
+	 
+- 'name' is either a string name ('*' is the wildcard)
+- 'index' is an integer 
+ 

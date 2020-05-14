@@ -1,0 +1,63 @@
+#
+# NSL: make_main
+#
+
+# CC
+
+CC_DIR = .
+CC_INCL = -I$(CC_DIR)/incl
+
+# SYSTEM
+
+SYS_DIR = .
+
+# NSL
+
+NSL_DIR = $(SYS_DIR)/NSL
+
+NSL_KERNEL_DIR = $(NSL_DIR)/kernel
+NSL_KERNEL_INCL_DIR = $(NSL_KERNEL_DIR)/incl
+
+NSL_NEURON_DIR = $(NSL_DIR)/neuron
+NSL_NEURON_INCL_DIR = $(NSL_NEURON_DIR)/incl
+NSL_NEURON_SRC_DIR = $(NSL_NEURON_DIR)/src
+NSL_NEURON_MAIN_SRC_DIR = $(NSL_NEURON_SRC_DIR)/main_src
+
+NSL_INCL = -I$(NSL_KERNEL_INCL_DIR) -I$(NSL_NEURON_INCL_DIR)
+
+# compilation specs
+
+CC = CC
+AR = ar
+cc = cc
+CC_FLAGS = -c
+LD_FLAGS =
+
+# nsl headers
+
+NSL_HEADERS = $(NSL_KERNEL_INCL_DIR)/nsl_all_kernel_include.h \
+		$(NSL_NEURON_INCL_DIR)/nsl_all_neuron_include.h
+ 
+# nsl main sys files $(NSL_NEURON_MAIN_SRC_DIR)
+
+NSL_MAIN_SRC =	nsl_neuron_main.C
+
+NSL_MAIN_OBJ =	$(NSL_MAIN_SRC:.C=.o)
+
+#nsl_kmain.o :     $(NSL_MAIN_OBJ) $(NSL_HEADERS)
+#	$(LD) $(LD_FLAGS) -r $(NSL_MAIN_OBJ) -o $@
+
+nsl_neuron_main.o :	$(NSL_HEADERS)
+	$(CC) $(CC_FLAGS) $(NSL_INCL) $(CC_INCL) $< -o $@
+
+.SUFFIXES: .C .o
+
+.C.o :	$(NSL_HEADERS)
+	$(CC) $(CC_FLAGS) $(NSL_INCL) $(CC_INCL) $< -o $@
+
+# clean
+
+clean:	
+	rm -f nsl_neuron_main.o
+	rm -f $(NSL_NEURON_MAIN_SRC_DIR)/*.o
+	rm -f $(NSL_NEURON_MAIN_SRC_DIR)/*[%~]

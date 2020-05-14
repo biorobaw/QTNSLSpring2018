@@ -1,0 +1,11 @@
+//	open 
+
+open ['type'] ['attr']
+
+- open file according to 'io_type', 'auto' attributes
+
+    type       	   attr       	    description 
+---------- 	---------- 	------------------- 
+[file]    			open file named according to model name or TMP
+	  	  'name'  	open file 'name' 
+ 

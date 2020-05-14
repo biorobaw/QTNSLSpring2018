@@ -1,0 +1,12 @@
+//	assign
+
+assign 'type' 'attr'
+
+    type    	  attr  	    description
+------------	----------	-------------------
+layer    	 'name'		assign values to layer accessed by name 
+	    	 'index'	assign values to layer accessed by index 
+
+- 'name' is a string name
+- 'index' is an integer 
+

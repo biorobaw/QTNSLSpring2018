@@ -1,0 +1,9 @@
+//	kernel: create
+ 
+create ['type'] ['attr'] 
+	 
+-create a particular object 
+
+    type    	   attr  	    description
+------------	----------	-------------------
+ 

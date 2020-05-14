@@ -1,0 +1,73 @@
+#
+# NSL: make_all_neuron_incl
+#
+
+SYS_DIR = .
+
+# NSL
+
+NSL_DIR = $(SYS_DIR)/NSL
+
+NSL_KERNEL_DIR = $(NSL_DIR)/kernel
+NSL_KERNEL_INCL_DIR = $(NSL_KERNEL_DIR)/incl
+
+NSL_NEURON_DIR = $(NSL_DIR)/neuron
+NSL_NEURON_INCL_DIR = $(NSL_NEURON_DIR)/incl
+
+NSL_NEURON_MAIN_INCL_DIR = $(NSL_NEURON_INCL_DIR)/main_neuron_incl
+NSL_NEURON_CMD_INCL_DIR = $(NSL_NEURON_INCL_DIR)/cmd_neuron_incl
+NSL_NEURON_LIB_INCL_DIR = $(NSL_NEURON_INCL_DIR)/lib_neuron_incl
+
+# nsl headers
+
+NSL_INCLUDE = $(NSL_NEURON_INCL_DIR)/nsl_all_neuron_include.h
+
+NSL_KERNEL_HEADERS = $(NSL_KERNEL_INCL_DIR)/nsl_all_kernel_include.h
+
+NSL_NEURON_HEADERS = $(NSL_NEURON_INCL_DIR)/nsl_neuron_include.h 	\
+		$(NSL_NEURON_INCL_DIR)/nsl_neuron_lib_include.h
+
+NSL_NEURON_MAIN_HEADERS = $(NSL_NEURON_MAIN_INCL_DIR)/nsl_neural_network.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_neuron_layer.h 		\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_neuron_data.h 		\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_neuron_vector.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_site_layer.h 		\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_site_data.h 		\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_site_vector.h 		\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_layer.h 		\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data.h 		\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector.h 		\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_data.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_vector.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_data.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_vector.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_data_data.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_data_vector.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_num_data.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_num_vector.h 	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_vector_data.h	\
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_data_vector_vector.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_data_data.h	  \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_data_vector.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_num_data.h    \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_num_vector.h  \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_vector_data.h \
+		$(NSL_NEURON_MAIN_INCL_DIR)/nsl_link_vector_vector_vector.h
+
+NSL_NEURON_CMD_HEADERS =
+
+NSL_NEURON_LIB_HEADERS = $(NSL_NEURON_LIB_INCL_DIR)/nsl_connect_library.h \
+		$(NSL_NEURON_LIB_INCL_DIR)/nsl_num_library.h 		\
+		$(NSL_NEURON_LIB_INCL_DIR)/nsl_ramp_library.h 		\
+		$(NSL_NEURON_LIB_INCL_DIR)/nsl_step_library.h
+
+# touch main headers if change to ANY header file
+
+HEADERS:	$(NSL_INCLUDE)
+
+$(NSL_INCLUDE):	 $(NSL_HEADERS)
+	touch $(NSL_INCLUDE)
+
+$(NSL_HEADERS):	$(NSL_KERNEL_HEADERS) $(NSL_NEURON_HEADERS) $(NSL_NEURON_MAIN_HEADERS) $(NSL_NEURON_CMD_HEADERS) $(NSL_NEURON_LIB_HEADERS)
+	touch $(NSL_HEADERS)
+

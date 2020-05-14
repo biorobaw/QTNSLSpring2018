@@ -1,0 +1,12 @@
+//	elem
+
+elem 'type' 'attr' ['elem's] 'value'
+
+    type    	  attr  	  elem      value	  description
+------------	----------	--------   --------   -------------------
+layer    	 'name'		'index'	    'value'   assign layer elem 
+	    	 'index'	'index'	    'value'   assign layer elem 
+
+- 'name' is a string name
+- 'index' is an integer 
+

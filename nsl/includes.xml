@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdtprojectproperties>
+<section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.IncludePaths">
+<language name="Assembly Source File">
+
+</language>
+<language name="C++ Source File">
+<includepath workspace_path="true">CppApplication_NSL/NSL/input/incl/input_stim_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/NSL/kernel/incl/cmd_exec_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/NSL/kernel/incl/cmd_etc_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/NSL/kernel/incl/cmd_main_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/NSL/kernel/incl/kernel_etc_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/NSL/kernel/incl/kernel_main_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/NSL/kernel/incl/lib_diff_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/NSL/kernel/incl/lib_etc_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/NSL/kernel/incl/lib_main_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/NSL/kernel/incl/lib_thresh_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/NSL/neuron/incl/cmd_neuron_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/NSL/neuron/incl/lib_neuron_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/NSL/neuron/incl/main_neuron_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/NSL/kernel/incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/NSL/neuron</includepath>
+<includepath workspace_path="true">CppApplication_NSL/NSL/input/incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/NSL/kernel</includepath>
+<includepath workspace_path="true">CppApplication_NSL/NSL/neuron/incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/xkernel/src</includepath>
+<includepath workspace_path="true">CppApplication_NSL/xkernel/incl/xcmd_main_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/xkernel/incl/xkernel_etc_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/xkernel/incl/xkernel_graph_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/xkernel/incl/xkernel_main_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/xkernel/incl/xkernel_widget_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/xkernel/incl/xlib_motif_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/xkernel/incl/xlib_tcltk_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/xkernel/incl/xlib_xlib_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/xkernel/incl/xlib_xview_incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/rts/incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/MAIN/incl</includepath>
+<includepath workspace_path="true">CppApplication_NSL/NSL/input/incl/cmd_stim_incl</includepath>
+
+</language>
+<language name="C Source File">
+
+</language>
+<language name="Object File">
+
+</language>
+</section>
+<section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.Macros">
+<language name="Assembly Source File">
+
+</language>
+<language name="C++ Source File">
+
+</language>
+<language name="C Source File">
+
+</language>
+<language name="Object File">
+
+</language>
+</section>
+</cdtprojectproperties>

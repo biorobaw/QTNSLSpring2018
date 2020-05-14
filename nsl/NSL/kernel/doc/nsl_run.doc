@@ -1,0 +1,9 @@
+//	run
+
+run ['type'] ['attr']
+
+   type		   attr   	    description 
+-----------	---------- 	------------------- 
+[model]		 		process modules for 0<=t<=end_time 
+		  'ts'  	process modules for 0<=t<=ts 
+
